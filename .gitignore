@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development settings
+*.env
+*.pyc
+
+# Secret keys
+*.secret_key
+
+# Log files
+logs/
+*.log
+
+# Virtual environment
+venv/
+env/

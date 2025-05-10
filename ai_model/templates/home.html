@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Detection AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+        .model-stats {
+            background-color: #e9f7fe;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .stat-item {
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            padding: 0.5rem 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Breast Cancer AI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'ai_model:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ai_model:ai_model' %}">Try the AI</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4">Breast Cancer Detection AI</h1>
+            <p class="lead">An advanced artificial intelligence system for early detection of breast cancer from medical images</p>
+            <a href="{% url 'ai_model:ai_model' %}" class="btn btn-primary btn-lg">Try the AI Model</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About Our Model</h2>
+                <p>Our deep learning model analyzes medical images to detect potential signs of breast cancer with high accuracy. Early detection is crucial for successful treatment, and our AI assists medical professionals in identifying concerning patterns.</p>
+                
+                <div class="model-stats">
+                    <h3>Model Performance</h3>
+                    <div class="stat-item">
+                        <strong>Accuracy:</strong> {{ model_info.accuracy|floatformat:2 }}
+                    </div>
+                    <div class="stat-item">
+                        <strong>Precision:</strong> {{ model_info.precision|floatformat:2 }}
+                    </div>
+                    <div class="stat-item">
+                        <strong>Recall:</strong> {{ model_info.recall|floatformat:2 }}
+                    </div>
+                    <div class="stat-item">
+                        <strong>Training Data:</strong> {{ model_info.data_used }}
+                    </div>
+                    <div class="stat-item">
+                        <strong>Model Architecture:</strong> {{ model_info.model_type }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <h2>How It Works</h2>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">1. Upload an Image</h5>
+                        <p class="card-text">Upload a mammogram or other breast imaging scan in common formats like JPEG or PNG.</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">2. AI Analysis</h5>
+                        <p class="card-text">Our model processes the image using advanced convolutional neural networks to detect patterns.</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">3. Get Results</h5>
+                        <p class="card-text">Receive an immediate assessment with confidence levels for different classifications.</p>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info mt-4">
+                    <strong>Note:</strong> This tool is for informational purposes only and should not replace professional medical advice. Always consult with a healthcare provider for diagnosis.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>© 2025 Breast Cancer Detection AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
