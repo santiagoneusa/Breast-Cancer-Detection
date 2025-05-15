@@ -6,9 +6,8 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 
-# MODEL_PATH = os.path.join(settings.BASE_DIR, 'ai_model', 'saved_model.h5')
-# model = tf.keras.models.load_model(MODEL_PATH)
-model = 0
+MODEL_PATH = os.path.join(settings.BASE_DIR, 'model', 'modelo_aug_cancer_mama_vgg16.keras')
+model = tf.keras.models.load_model(MODEL_PATH)
 TF_ENABLE_ONEDNN_OPTS=0
 
 MODEL_INFO = {
@@ -17,7 +16,7 @@ MODEL_INFO = {
     'recall': 0.93,
     'data_used': "12,000 mammogram images",
     'model_type': "Convolutional Neural Network",
-    'classes': ["Normal", "Benign", "Malignant"]
+    'classes': ["Benign", "Malignant"]
 }
 
 def home(request):
@@ -29,7 +28,7 @@ def ai_model(request):
     if request.method == 'POST' and request.FILES['image']:
         try:
             uploaded_file = request.FILES['image']
-            fs = FileSystemStorage()
+            fs = FileSystemStorage(location=settings.MEDIA_ROOT)
             
             filename = fs.save(uploaded_file.name, uploaded_file)
             file_path = fs.path(filename)
@@ -46,9 +45,7 @@ def ai_model(request):
             
             template_data['prediction'] = MODEL_INFO['classes'][predicted_class]
             template_data['confidence'] = f"{confidence:.2f}%"
-            template_data['image_url'] = fs.url(filename)
-            
-            os.remove(file_path)
+            template_data['image_url'] = settings.MEDIA_URL + filename
             
         except Exception as e:
             template_data['error'] = f"Error processing image: {str(e)}"
