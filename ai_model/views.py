@@ -11,10 +11,10 @@ model = tf.keras.models.load_model(MODEL_PATH)
 TF_ENABLE_ONEDNN_OPTS=0
 
 MODEL_INFO = {
-    'accuracy': 0.92,
-    'precision': 0.91,
-    'recall': 0.93,
-    'data_used': "12,000 mammogram images",
+    'accuracy': 0.95,
+    'precision': 0.94,
+    'recall': 0.96,
+    'data_used': "+8,000 mammogram images",
     'model_type': "Convolutional Neural Network",
     'classes': ["Benign", "Malignant"]
 }
